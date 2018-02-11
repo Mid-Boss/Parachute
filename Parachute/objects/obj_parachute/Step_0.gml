@@ -8,11 +8,17 @@ if instance_place(x, y, obj_msl_cmd)
 	global.game_over = true;
 }
 
+if instance_place(x, y, obj_spike)
+{
+	global.game_over = true;
+}
+
 if !is_dead && !global.game_over && !global.victory
 {
 	if instance_place(x, y, obj_parent_collision) && curr_iframes == 0
 	{
 		o_hp -= 1;
+		instance_create_depth(x, y, -1100, obj_flash);
 		if o_hp == 0
 		{
 			is_dead = true;
